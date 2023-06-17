@@ -1,0 +1,44 @@
+local part = Instance.new("Part",game.workspace)
+
+local player = game:GetService("Players").LocalPlayer
+local v = false
+
+local scr = Instance.new("ScreenGui",player.PlayerGui)
+local button = Instance.new("TextButton",scr)
+local UICorner = Instance.new("UICorner")
+
+--Properties:
+
+button.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+button.Position = UDim2.new(0, 0, 0.919484675, 0)
+button.Size = UDim2.new(0, 200, 0, 50)
+button.Font = Enum.Font.SourceSans
+button.Text = "Toggle Float"
+button.TextColor3 = Color3.fromRGB(0, 0, 0)
+button.TextScaled = true
+button.TextSize = 14.000
+button.TextWrapped = true
+
+UICorner.Parent = button
+--UI end
+
+part.Size = Vector3.new(10,0.5,10)
+part.Anchored=true
+part.Position=Vector3.new(0,-10,0)
+
+button.MouseButton1Down:Connect(function()
+	v = not v -- v = true or false
+	if   v then --如果没有开启就执行
+		while v  do
+			wait(0.01)
+				local position = player.Character.HumanoidRootPart.Position
+			button.Text = "Toggle True"
+			part.Position = position - Vector3.new(0,3.4,0)
+		end
+			
+		
+	else
+		button.Text = "Toggle False"
+		
+	end
+end)
